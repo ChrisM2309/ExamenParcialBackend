@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loan;
+use App\Models\Book;
 use App\Http\Requests\StoreLoanRequest;
 use App\Http\Requests\UpdateLoanRequest;
 use App\Http\Resources\LoanResource; 
@@ -34,8 +35,15 @@ class LoanController extends Controller
         // hiring_date por defecto = hoy si no viene
         $data['loan_date'] = $data['loan_date'] ?? now()->toDateString();
 
+        $book = Book::find($data['book_id']);
+        if (!$book){
+            return response()->json(['message' => 'No existe'], 404);
+        }
+        if ($book->available_copies <= 0){
+            return response()->json(['message' => 'No hay copias disponibles'], 400);
+        }
         $loan = Loan::create($data);
-
+        $book['available_copies'] = $book->available_copies - 1;
         return response()->json(LoanResource::make($loan), 201);
     }
 
