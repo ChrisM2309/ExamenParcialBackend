@@ -11,7 +11,7 @@ class StoreLoanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreLoanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required','string','max:255'],
+            'lastname' => ['required','string','max:255'],
+            'loan_date' => ['nullable','date'],
+            'book' => ['required','integer','unique:book,id'],
         ];
     }
 }

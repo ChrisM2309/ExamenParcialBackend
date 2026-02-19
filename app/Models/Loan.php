@@ -9,4 +9,11 @@ class Loan extends Model
 {
     /** @use HasFactory<\Database\Factories\LoanFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'lastname',
+        'loan_date',
+        'book',
+    ];
 }
