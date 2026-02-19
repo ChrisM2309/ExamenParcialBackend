@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title')->after('id');
             $table->string('description')->after('title');
-            $table->string('title')->after('id');
-
+            $table->string('isbn')->after('description');
+            $table->integer('total_copies')->after('isbn'); 
+            $table->integer('available_copies')->after('total_copies');
+            $table->boolean('status')->after('available_copies');
             $table->timestamps();
         });
     }
