@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->string('name')->after('id'); 
-            $table->dateTime('loan_date')->after('name');
-            $table->string('book_id')->after('loan_date');
+            $table->datetime('loan_date')->nullable()->after('name');
+            $table->integer('book_id')->after('loan_date');
+            $table->datetime('return_date')->nullable()->after('book_id');
             $table->timestamps();
         });
     }

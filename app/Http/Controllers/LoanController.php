@@ -31,7 +31,6 @@ class LoanController extends Controller
     public function store(StoreLoanRequest $request)
     {
         $data = $request->validated();
-
         // hiring_date por defecto = hoy si no viene
         $data['loan_date'] = $data['loan_date'] ?? now()->toDateString();
 

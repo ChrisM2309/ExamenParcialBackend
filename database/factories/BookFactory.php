@@ -23,7 +23,7 @@ class BookFactory extends Factory
     {
         return [
             'title' => fake()->name(),
-            'description' => fake()->Str::random(15), 
+            'description' => fake()->Str::random(10), 
             'isbn' => fake()->Str::random(9),
             'total_copies' => fake()->Integer::random(),
             'available_copies' => 'total_copies',

@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         BookSeeder::class
        ]);
 
-       Book::factory()->count(90)->create();
+       //Book::factory()->count(90)->create();
     }
 }

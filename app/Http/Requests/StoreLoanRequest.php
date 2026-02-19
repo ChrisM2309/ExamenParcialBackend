@@ -23,9 +23,8 @@ class StoreLoanRequest extends FormRequest
     {
         return [
             'name' => ['required','string','max:255'],
-            'lastname' => ['required','string','max:255'],
-            'loan_date' => ['nullable','date'],
-            'book' => ['required','integer','unique:book,id'],
+            'loan_date' => ['nullable','datetime'],
+            'book_id' => ['required','integer']
         ];
-    }
+    } 
 }
