@@ -12,5 +12,5 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function(){
     Route::get('/books', [BookController::class, 'index']);
     Route::post('/loans', [LoanController::class, 'store']);
-    Route::post('/loans/{loan_id}', [LoanController::class, 'returns']);
+    Route::post('/returns/{loan_id}', [LoanController::class, 'returns']);
 });

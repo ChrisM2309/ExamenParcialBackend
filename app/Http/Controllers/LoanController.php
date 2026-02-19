@@ -93,14 +93,19 @@ class LoanController extends Controller
 
         $available_copies = Book::find($book_id)->available_copies;
 
-        $return_date = $loan->return_date;
+        if ($available_copies == 0){
+            Book::find($book_id)->status = 1; 
+        }
+        Book::find($book_id)->avaliable_copies += 1; 
 
+        $return_date = $loan->return_date;
         if ($return_date) {
             return response()->json([
                 'message' => 'El libro ya ha sido devuelto.'
             ], 422);
         }
 
+        $loan['return_date'] = now(); 
         return response()->json([
             'message' => 'Devolucion realizada exitosamente.'
         ], 201);
