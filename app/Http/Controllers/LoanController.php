@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Loan;
 use App\Http\Requests\StoreLoanRequest;
 use App\Http\Requests\UpdateLoanRequest;
+use App\Http\Resources\LoanResource; 
 
 class LoanController extends Controller
 {
@@ -67,6 +68,11 @@ class LoanController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Loan $loan)
+    {
+        //
+    }
+
+    public function returns(Loan $loan)
     {
         //
     }

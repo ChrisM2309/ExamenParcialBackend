@@ -15,7 +15,18 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $books = Book::query()->get();
+        // filtros de titulo, isbn, status
+        $books = Book::query()
+        ->when($request->has('title'), function ($query) {
+                $query->where('title', 'like', '%' . request()->input('title') . '%');
+            })
+        ->when($request->has('isbn'), function ($query) {
+                $query->where('isbn', 'like', '%' . request()->input('isbn') . '%');
+            })
+        ->when($request->has('status'), function ($query) {
+                $query->where('status', request()->input('status'));
+            })
+        ->get();
         return BookResource::collection($books);
     }
 

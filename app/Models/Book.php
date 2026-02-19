@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-$users = User::factory()->count(90)->create();
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class Book extends Model
 {
-
     protected $fillable = [
         'title',
         'description',
