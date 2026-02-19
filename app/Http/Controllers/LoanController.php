@@ -79,8 +79,30 @@ class LoanController extends Controller
         //
     }
 
-    public function returns(Loan $loan)
+    public function returns(int $id)
     {
-        //
+        $loan = Loan::find($id);
+
+        if (!$loan) {
+            return response()->json([
+                'message' => 'Prestamo no encontrado.'
+            ], 404);
+        }
+
+        $book_id = $loan->book_id;
+
+        $available_copies = Book::find($book_id)->available_copies;
+
+        $return_date = $loan->return_date;
+
+        if ($return_date) {
+            return response()->json([
+                'message' => 'El libro ya ha sido devuelto.'
+            ], 422);
+        }
+
+        return response()->json([
+            'message' => 'Devolucion realizada exitosamente.'
+        ], 201);
     }
 }
