@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
-Route::prefix('v1')->group(function () {
-    Route::get('books', [BookController::class, 'store']);
-    Route::post('loans', [BookController::class, 'store']);
-    Route::post('returns/{id}', [BookController::class, 'store']);
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('/books', [BookController::class, 'index']);
 });
